@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool binarySearch(int a[], int start, int end, int target) {
+    if(start > end)
+        return false;
+    
+    int mid = start + (end - start) / 2;
+
+    if(a[mid] == target) {
+        return true;
+    }
+    if(a[mid] < target)
+        return binarySearch(a, mid+1, end, target);
+    
+    return binarySearch(a, start, mid-1, target);
+}
+
+int main() {
+    int n, target;
+    cout << "Enter number of elements in the array: ";
+    cin >> n;
+
+    int a[n];
+    cout << "Enter " << n << " element: ";
+    for(auto &p : a) {
+        cin >> p;
+    }
+    cout << "Enter the element you want to find in array: ";
+    cin >> target;
+
+    if(binarySearch(a, 0, n-1, target))
+        cout << "Element found!";
+    else
+        cout << "Element not found";
+    return 0;
+}
